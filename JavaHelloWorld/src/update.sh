@@ -1,1 +1,1 @@
-scp Primes.java PlaceOrder.java chungchiena@dimefox.eng.unimelb.edu.au:COMP90041/lab2
+scp BackgammonTest.java chungchiena@dimefox.eng.unimelb.edu.au:COMP90041/lab3

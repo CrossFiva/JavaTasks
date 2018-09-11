@@ -13,20 +13,24 @@
 
 public class BackgammonTest {
     public static BackgammonBoard br1 = new BackgammonBoard();
+    public static final String strCorrect = "CORRECT";
+    public static final String strError = "BUG";
+    private static final Boolean setWhitchMan = false;
+    private static final Boolean setBlackMan = true;
+
 
     public static void main(String[] args1) {
         
-        System.out.println( br1.getBarBlackCount());
-        System.out.println( br1.getBarWhiteCount());
-        System.out.println( br1.getPointCount(0));
-        System.out.println( br1.getPointBlack(1));
-        br1.setPoint(1,5,true);
-        br1.move(0,2);
-        System.out.println( br1.getBarBlackCount());
-        System.out.println( br1.getBarWhiteCount());
-        System.out.println( br1.getPointCount(1));
-        System.out.println( br1.getPointBlack(1));
+ 
+        System.out.println(strCorrect);
+        System.out.println(args1[0]);
+   
 
+    }
+
+    public static void move(int a, int b) {
+
+        System.out.println("Move, " + a +" "+ b);
     }
 
 }
