@@ -50,6 +50,7 @@ public class SelfTest {
     // Test whether we can move more than 6 points
     private static boolean shouldNotMoveMoreThanSixPoints(){
         BackgammonBoard board = setupBoard();
+        
 
         board.move(5,7);
         board.move(5,7);
