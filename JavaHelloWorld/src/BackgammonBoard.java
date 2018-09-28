@@ -9,7 +9,7 @@
 ;*
 ;******************************************************************************
 */
-package src;
+
 
 public class BackgammonBoard  {
   //
@@ -38,15 +38,14 @@ public class BackgammonBoard  {
   private static int [] mPlayer = new int [VAR_QUANTITY_NODE]; // array for saving the players on a node.
   private static int [] mBar = new int [VAR_QUANTITY_PLAYER]; // array for saving bar for each player
   
-
-  public static void main (String [] Str) {
-
-  }
   
   // public BackgammonBoard(String name) {  
   //   this.mName = name; 
   // }
   public BackgammonBoard() {  
+    mMen = new int [VAR_QUANTITY_NODE];
+    mPlayer = new int [VAR_QUANTITY_NODE]; 
+    mBar = new int [VAR_QUANTITY_PLAYER]; 
   }
   
   public static int getPointCount(int point) {
@@ -100,10 +99,37 @@ public class BackgammonBoard  {
     
     // error handle : moving to different player's node
     if ((getPointBlack(fromPoint) != getPointBlack(toPoint)) && getPointCount(toPoint) > 1) return;
-    
 
-
-
+    // all inputs are fulfilled for the game's rule
+    // moving the node
+           
+    if (getPointBlack(fromPoint) && !getPointBlack(toPoint) && getPointCount(toPoint) == 1){
+      // If black player hit white player, white bar will be added
+      mMen[fromPoint]--;
+      mPlayer[toPoint] = FLAG_BLACK_MAN;
+      // add white bar
+      mBar[FLAG_WHITE_MAN - 1]++;
+    } else if (!getPointBlack(fromPoint) && getPointBlack(toPoint) && getPointCount(toPoint) == 1){
+      // If white player hits black player, black bar will be added
+      mMen[fromPoint]--;
+      mPlayer[toPoint] = FLAG_WHITE_MAN;
+      // add black bar
+      mBar[FLAG_BLACK_MAN - 1]++;
+    } else {
+      // same player or empty node situation.
+      mMen[fromPoint]--;
+      if (getPointCount(toPoint) > 0) {
+        mMen[toPoint]++;
+      } else {
+        // the empty node, the new player and its man are fulled into the node
+        mMen[toPoint]++;
+        mPlayer[toPoint] = mPlayer[fromPoint];
+        // the start node is empty, set the distence node as empty too.
+        if (getPointCount(fromPoint) == 0) {
+          mPlayer[fromPoint] = 0;
+        }
+      }
+    }
     return;
   }
 }
